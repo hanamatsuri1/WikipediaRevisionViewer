@@ -8,9 +8,7 @@ import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class utils {
 
@@ -43,6 +41,26 @@ public class utils {
         Type listType = new TypeToken<List<Editor>>() {}.getType();
         List<Editor> List = new Gson().fromJson(array,listType);
         return List;
+    }
+
+    public static List sortlist (List<Editor> list) {
+        Map<String,Integer> map=new HashMap<>();
+        for (Editor editor: list) {
+            Integer count = map.get(editor.getUser());
+            if (null != count) {
+                map.put(editor.getUser(), count + 1);
+            } else {
+                map.put(editor.getUser(), 1);
+            }
+        }
+        List<Map.Entry<String, Integer>> sortedlist = new ArrayList<>();
+        sortedlist.addAll(map.entrySet());
+        Collections.sort(sortedlist, new Comparator<Map.Entry<String, Integer>>() {
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                return (o2.getValue() - o1.getValue());
+            }
+        });
+        return sortedlist;
     }
 
 

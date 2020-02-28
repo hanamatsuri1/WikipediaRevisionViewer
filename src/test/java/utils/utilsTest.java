@@ -1,8 +1,0 @@
-package utils;
-
-class utilsTest {
-
-
-
-
-}

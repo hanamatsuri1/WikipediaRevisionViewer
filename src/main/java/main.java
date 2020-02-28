@@ -27,7 +27,7 @@ public class main {
                         break;
                     }
                     String url = ParseUtils.parseUrlToJsonString(input);
-                    //Check if there is no wikipedia page?
+                    //Check if there is no wikipedia page
                     if (url.contains("missing")){
                         System.out.println("No Wikipedia Page Founded");
                         break;
